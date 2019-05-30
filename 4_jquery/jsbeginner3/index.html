@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+    <!-- -----1 -->
+
+      var like = ["Basketball","coldrain","ELLEGARDEN","JoJo","PSHICOPASS"];
+      console.log(like);
+
+       if (like == []){
+         console.log("true");
+       }else{
+         console.log("false");
+         console.log(like[0]);
+         console.log(like[like.length-1]);
+         like.pop();
+         like.push("Ryo");
+         console.log(like);
+       }
+
+       console.log(like);
+
+    <!-- -----2 -->
+    "use strict";
+
+      function getSum(x,y) {
+        return x - y;
+
+
+        }
+
+
+
+      console.log(getSum(x=300,y=200));
+
+
+      function getSum(x,z) {
+        return x + z;
+
+        }
+
+
+
+      console.log(getSum(x=300,z=700));
+
+
+
+
+      var assignGrade = [64,65,80,100];
+
+      for (var i = assignGrade.length-1; i >= 0; i--){
+
+      if(assignGrade[i] == 100){
+        console.log("You got perfect score!");
+      }else if(assignGrade[i] >= 80 && assignGrade[i]  < 100){
+        console.log("You are doing great!");
+      }else if( 80 > assignGrade[i]  && 65 <= assignGrade[i]  ){
+        console.log("You need more practice!");
+      }else if(assignGrade[i]  < 65 ){
+        console.log("You failed!");
+      }else{
+        console.log("Score accepted is from 1 to 100 only");
+      }
+
+      }
+
+    </script>
+  </body>
+</html>
