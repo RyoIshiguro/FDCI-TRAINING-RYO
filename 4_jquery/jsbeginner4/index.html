@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jsbeginner4</title>
+  </head>
+  <body>
+
+
+
+
+    <script type="text/javascript">
+      "use strict";
+
+      var employees = ["noreto", "bon2", "julie", "lemuel"];
+        var hoursArr = [20, 5, 12, 15];
+        var earningsArr = [5, 6, 7, 8];
+
+
+        for(var i = 0 ; i < employees.length ; i++) {
+
+          var numOfHrs = get_num_hours(i);
+          var earningsPerHr = get_earnings(i);
+          var salary = compute_salary(numOfHrs, earningsPerHr);
+
+          console.log(employees[i]+"'s SALARY = " + salary);
+        }
+
+         // this function will be used to get how many hours the employee worked for
+          function get_num_hours(employee_index){
+              return hoursArr[employee_index];
+          }
+
+          // this function will be used to get the earnings per hour
+          function get_earnings(employee_index){
+              return earningsArr[employee_index];
+          }
+
+          // this function will be used to compute salary
+          function compute_salary(hours, earnings_per_hour) {
+               return hours * earnings_per_hour;
+
+          }
+
+
+          for(var i = 0; i < 100 ; i++){
+          if( i % 2 == 0){
+            console.log("even");
+          }else{
+            console.log("odd");
+          }
+        }
+
+
+
+
+
+
+          // #1. COMPLETE SALARY FUNCTION
+          // #2. LOOP FROM 0 TO 100, CHECK IF EVEN OR ODD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+  </body>
+</html>
