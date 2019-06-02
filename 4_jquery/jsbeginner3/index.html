@@ -81,18 +81,64 @@
 
       // 3------ it is from Carl
 
+      // var getLnumber = [12,45,62,12,1,15];
+      //
+      // function getLargestNumber(max){
+      //   return Math.max(...max);
+      // }
+      //
+      // function getSmallestNumber(min){
+      //   return Math.min(...min);
+      // }
+      //
+      // console.log(getLargestNumber(getLnumber));
+      // console.log(getSmallestNumber(getLnumber));
+
+
+      //4-------- improve
+
       var getLnumber = [12,45,62,12,1,15];
 
-      function getLargestNumber(max){
-        return Math.max(...max);
+      function getLargestNumber(arrayOfNumber){
+        var temp = arrayOfNumber[0];
+
+
+      for( var i = 1; i <= arrayOfNumber.length-1; i++ ){
+        if(arrayOfNumber[i] >= temp){
+          temp = arrayOfNumber[i];
+        }
       }
 
-      function getSmallestNumber(min){
-        return Math.min(...min);
+      return temp;
+    }
+
+    console.log(getLargestNumber(getLnumber));
+
+
+
+      var getSnumber = [12,45,62,12,1,15];
+
+      function getSmallestNumber(arrayOfNumber){
+        var temp = arrayOfNumber[0];
+
+
+      for( var i = 1; i <= arrayOfNumber.length-1; i++ ){
+        if(arrayOfNumber[i] <= temp){
+          temp = arrayOfNumber[i];
+        }
       }
 
-      console.log(getLargestNumber(getLnumber));
-      console.log(getSmallestNumber(getLnumber));
+      return temp;
+    }
+
+    console.log(getSmallestNumber(getSnumber));
+
+
+
+
+
+
+
 
 
 
