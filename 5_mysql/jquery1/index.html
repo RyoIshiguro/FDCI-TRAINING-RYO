@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+<head>
+        <title>JQUERY - ACTIVITY 1</title>
+        <script src="jquery-3.4.1.min.js" charset="utf-8"></script>
+
+</head>
+<body>
+        <h1>My First jQuery Activity</h1>
+        <ul>
+                <li class="hidden">Hide Me</li>
+                <li>Show Me</li>
+                <li id="hidden">Hide Me by ID</li>
+                <li>Show Me</li>
+                <li class="hidden">Hide Me</li>
+                <li class="hidden">Hide Me</li>
+                <li class="remove">Remove Me</li>
+        </ul>
+        <p class="remove"> This must be shown.</p>
+
+        YOUR NAME: <input type="text" name="myName"><br>
+        YOUR AGE: <input type="text" name="myAge"><br>
+
+        <script>
+          //sample
+
+          $(".hidden").hide();
+          $("#hidden").hide();
+          $(".remove").hide();
+          $("p").show();
+
+          $('input[name="myName"]').val('Dio');
+          $('input[name="myAge"]').val('25');
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+</html>
