@@ -11,7 +11,7 @@
 </head>
 <body>
         <h1>My First jQuery Activity</h1>
-        <ul>
+        <ul class="count">
                 <li class="hidden">Hide Me</li>
                 <li>Show Me</li>
                 <li id="hidden">Hide Me by ID</li>
@@ -25,8 +25,98 @@
         YOUR NAME: <input type="text" name="myName"><br>
         YOUR AGE: <input type="text" name="myAge"><br>
 
+
+        <!-- 1 -->
+        <p class="bgColor">1.ready</p>
+
+
+        <!-- 2 -->
+        <div class="inoutPut"></div>
+        <button type="button" name="button" id="btn1">2.Who are you ?</button><br>
+
+
+        <!-- 3 -->
+        <!-- <div class="changeBgColor"></div> -->
+        <button type="button" name="button" id="btn2">3.時よ止まれ！The World !</button><br>
+
+        <!-- 4 -->
+        <div id="fdc_div_element1" style="background-color: purple; height: 500px; width: 100%"></div>
+        <button type="button" name="button" id="btn3">WHAT COLOR AM I?</button>
+        <div id="grb" class="what color am i"></div><br>
+
+
+        <!-- 5 -->
+        <div id="no5" style="height: 200px; width: 200px; background-color:red;"></div>
+        <button type="button" name="button" id="btn4">WHAT'S MY HEIGHT AND WIDTH?</button>
+        <div id="hw1" class="how height and width am i"></div>
+        <div id="hw2" class="how height and width am i"></div><br>
+
+
+        <!-- 6 -->
+        <button type="button" name="button" id="btn5">count elements?</button>
+
+
+        <!-- 7 -->
+        <div class="fdc_parent_container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <h1></h1>
+        <p></p>
+        <span></span>
+        <div></div>
+        </div>
+
+
+        <button type="button" name="button" id="btn6">count div?</button><br><br>
+
+
+        <!-- 8 -->
+        <!-- divを追加 -->
+
+        <button type="button" name="button" id="btn7">insert a div tag!</button><br><br>
+
+        <div id="parent_fdc_div">fdfd</div>
+
+
+        <!-- 9 -->
+        <!-- class="fdc-4"を持つliを背景色青に -->
+        <ul>
+          <li class="fdc-1"></li>
+          <li class="fdc-2"></li>
+          <li class="fdc-3"></li>
+          <li class="fdc-4"></li>
+        </ul>
+
+        <button type="button" name="button" id="btn8">BLUE</button>
+
+
+        <!-- 10 -->
+        <!-- クリックした時に書くH1を消せるようにする -->
+        <h1>Hide me 1!</h1>
+        <h1>Hide me 2!</h1>
+        <h1>Hide me 3!</h1>
+        <h1>Hide me 4!</h1>
+        <h1>Hide me 5!</h1>
+        <h1>Hide me 6!</h1>
+
+
+
+
         <script>
           //sample
+
+          /*
+          ＄（ セレクタ ）. イベント（ function（）｛
+          　　＄（ セレクタ ）. 命令
+          ｝）；
+
+
+          $(“#hoge”) – idセレクタ
+          $(“.hogehoge”) – クラスセレクタ
+          $(“li a”) – 子孫セレクタ
+          $(“p.hoge, p.hogehoge”) – グループセレクタ*/
+
 
           $(".hidden").hide();
           $("#hidden").hide();
@@ -37,7 +127,111 @@
           $('input[name="myAge"]').val('25');
 
 
+          //jquery add homework
 
+          //1.ready
+          //load は全ての画像などが読み込まれた時点で発火する(トリガー)
+            $(document).ready(function(){
+            $(".bgColor").css('background-color','skyblue');
+            });
+
+          //2.input & output
+          //名前を教えてアラート
+
+          $("#btn1").click(function(){
+            var name = prompt("What is your name ?","Ryo");
+            $(".inoutPut").text(name);
+          });
+          //セレクターに対象のidなどを入れるtextやhtmlで追加や書き換えができる
+
+
+          //3.ckick allow change background background color
+
+          $("#btn2").click(function(){
+            $("body").css("background-color","black");
+            $("body").css("color","white");
+          });
+
+          //body指定でバックグラウンドを指定
+
+          //4.get background-color and display
+          $("#btn3").click(function(){
+            $("body").css("background-color","purple");
+            $("body").css("color","black");
+
+            var colorCheck = $("body").css("background-color"); //ここでbodyのgrbを取得
+            $("div#grb").text(colorCheck);
+            // alert(colorCheck);
+          });
+
+          //
+
+
+          //5.get height and width
+          $("#btn4").click(function(){
+
+            $("div#no5").height();
+            $("div#no5").width();
+            var h = $("div#no5").height();
+            var w = $("div#no5").width();
+
+            // console.log(h);
+            // console.log(w);
+            $("div#hw1").text("hight = " + h );
+            $("div#hw2").text("weight = " + w);
+          });
+
+          //文法は４と同じで色が高さと幅に変わっただけ
+
+
+
+          //6.- Create a jquery program that will count all the elements inside the document
+
+          // $("#btn5").click(function () {
+          //   var counter = 0;
+          //   $('.count li').each(function () {   //classがliを何個もってるかカウントしてくれる
+          //     counter++; //
+          //   });
+          //   alert(counter);
+          // });
+
+          $("#btn5").click(function () {
+		          // console.log("All Elements: "+$('*').length); // "*"は全てという意味
+		            alert("All Elements: "+$('*').length);
+		              });
+
+
+          //7. - Create a jquery program that will count all the div tags inside this container
+
+          $("#btn6").click(function() {
+            var counter = 0;
+            $(".fdc_parent_container div").each(function(){
+              counter++;
+            });
+            alert(counter)
+          });
+
+
+          //8.- Create a jquery program that will append div tags inside the div element below
+
+          $("#btn7").click(function(){
+            $("#parent_fdc_div").append("無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄");
+          });
+
+
+
+          //9.- Create a jquery program that will append div tags inside the div element below
+
+          $("#btn8").click(function(){
+            $("ul").find(".fdc-4").css("background-color","blue"); //findは親要素が含むものを探しに行く
+          });
+
+
+
+          //10.-  Hide each h1 tag when they are clicked.
+          $("h1").click(function () {
+            $(this).slideUp();
+          });
 
 
 
