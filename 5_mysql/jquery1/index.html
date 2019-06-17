@@ -58,13 +58,13 @@
 
         <!-- 7 -->
         <div class="fdc_parent_container">
-          <div></div>
-          <div></div>
-          <div></div>
-          <h1></h1>
-          <p></p>
-          <span></span>
-          <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <h1></h1>
+        <p></p>
+        <span></span>
+        <div></div>
         </div>
 
 
@@ -106,10 +106,6 @@
         <script>
           //sample
 
-          //jqueryの約束この二つのどちらかで始める
-          //$(document).ready(function(){});
-          // $(function(){ //ここにコードが書かれる});
-
           /*
           ＄（ セレクタ ）. イベント（ function（）｛
           　　＄（ セレクタ ）. 命令
@@ -142,54 +138,47 @@
           //2.input & output
           //名前を教えてアラート
 
-          $(document).ready(function(){
-            $("#btn1").click(function(){
-              var name = prompt("What is your name ?","Ryo");
-              $(".inoutPut").text(name);
-            });
+          $("#btn1").click(function(){
+            var name = prompt("What is your name ?","Ryo");
+            $(".inoutPut").text(name);
           });
           //セレクターに対象のidなどを入れるtextやhtmlで追加や書き換えができる
 
 
           //3.ckick allow change background background color
-          $(document).ready(function(){
-            $("#btn2").click(function(){
-              $("body").css("background-color","black");
-              $("body").css("color","white");
-            });
+
+          $("#btn2").click(function(){
+            $("body").css("background-color","black");
+            $("body").css("color","white");
           });
 
           //body指定でバックグラウンドを指定
 
           //4.get background-color and display
-          $(document).ready(function(){
-            $("#btn3").click(function(){
-              $("body").css("background-color","purple");
-              $("body").css("color","black");
+          $("#btn3").click(function(){
+            $("body").css("background-color","purple");
+            $("body").css("color","black");
 
-              var colorCheck = $("body").css("background-color"); //ここでbodyのgrbを取得
-              $("div#grb").text(colorCheck);
-              // alert(colorCheck);
-            });
+            var colorCheck = $("body").css("background-color"); //ここでbodyのgrbを取得
+            $("div#grb").text(colorCheck);
+            // alert(colorCheck);
           });
 
           //
 
 
           //5.get height and width
-          $(document).ready(function(){
-            $("#btn4").click(function(){
+          $("#btn4").click(function(){
 
-              $("div#no5").height();
-              $("div#no5").width();
-              var h = $("div#no5").height();
-              var w = $("div#no5").width();
+            $("div#no5").height();
+            $("div#no5").width();
+            var h = $("div#no5").height();
+            var w = $("div#no5").width();
 
-              // console.log(h);
-              // console.log(w);
-              $("div#hw1").text("hight = " + h );
-              $("div#hw2").text("weight = " + w);
-            });
+            // console.log(h);
+            // console.log(w);
+            $("div#hw1").text("hight = " + h );
+            $("div#hw2").text("weight = " + w);
           });
 
           //文法は４と同じで色が高さと幅に変わっただけ
@@ -205,56 +194,43 @@
           //   });
           //   alert(counter);
           // });
-          $(document).ready(function(){
-            $("#btn5").click(function () {
-  		          // console.log("All Elements: "+$('*').length); // "*"は全てという意味
-  		          alert("All Elements: "+$('*').length);
-  		      });
-  		    });
+
+          $("#btn5").click(function () {
+		          // console.log("All Elements: "+$('*').length); // "*"は全てという意味
+		            alert("All Elements: "+$('*').length);
+		              });
 
 
           //7. - Create a jquery program that will count all the div tags inside this container
 
-          // $("#btn6").click(function() {
-          //   var counter = 0;
-          //   $(".fdc_parent_container div").each(function(){
-          //     counter++;
-          //   });
-          //   alert(counter)
-          // });
-
-          $(document).ready(function(){
-            $("#btn6").click(function() {
-              $(".fdc_parent_container div").length
-                alert($(".fdc_parent_container div").length);
+          $("#btn6").click(function() {
+            var counter = 0;
+            $(".fdc_parent_container div").each(function(){
+              counter++;
             });
+            alert(counter)
           });
 
 
-
           //8.- Create a jquery program that will append div tags inside the div element below
-          $(document).ready(function(){
-            $("#btn7").click(function(){
-              $("#parent_fdc_div").append("<div>無駄無駄無駄無駄</div>");
-            });
+
+          $("#btn7").click(function(){
+            $("#parent_fdc_div").append("無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄無駄");
           });
 
 
 
           //9.- Create a jquery program that will append div tags inside the div element below
-          $(document).ready(function(){
-            $("#btn8").click(function(){
-              $("ul").find(".fdc-4").css("background-color","blue"); //findは親要素が含むものを探しに行く
-            });
+
+          $("#btn8").click(function(){
+            $("ul").find(".fdc-4").css("background-color","blue"); //findは親要素が含むものを探しに行く
           });
 
 
 
           //10.-  Hide each h1 tag when they are clicked.
-          $(document).ready(function(){
-            $("h1").click(function () {
-              $(this).slideUp();
-            });
+          $("h1").click(function () {
+            $(this).slideUp();
           });
 
 
