@@ -102,6 +102,41 @@
 
 
 
+        <!-- 11 -->
+        <!-- 入力したのを反映 -->
+        <input type="text" id="fdc_textbox">
+
+        <div id="fdc_text_ouput"></div>
+        <br>
+
+        <!-- 12 -->
+        <input type="text" id="fdc_textbox12">
+        <input type="checkbox" id="fdc_checkbox12">
+        <br><br><br>
+
+
+        <!-- 13 -->
+        <div id="traffic_light" style="border: 1px solid grey; padding: 10px; width: 52px;">
+          <div class="red_light" style="height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;"></div>
+          <div class="yellow_light" style="height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;"></div>
+          <div class="green_light" style="height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;"></div>
+        </div>
+        <br>
+        <button type="button" name="button" id="btn13">start</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <script>
           //sample
@@ -257,6 +292,99 @@
             });
           });
 
+          //11.- Catch when the user types something inside a textbox and display it inside a div tag
+          $(document).ready(function(){
+            $("#fdc_textbox").keyup(function(){
+              var val = $("#fdc_textbox").val();
+              $("#fdc_text_ouput").text(val);
+            });
+          });
+
+          //12.- Create a program that will detect the text entered by a user.
+                // - If the user types "fdc", activate the checkbox (add check)
+                // - Else, deactivate the checkbox (remove check)
+
+                // <input type="text" id="fdc_textbox12">
+                // <input type="checkbox" id="fdc_checkbox12">
+
+                // $('input[name="checkbox"]').prop("checked",true);
+
+                $(document).ready(function(){
+                  $("#fdc_textbox12").keyup(function(){
+                    var val = $("#fdc_textbox12").val();
+                      if( val == "fdc"){
+                        $("#fdc_checkbox12").prop("checked",true);
+                      };
+                  });
+                });
+
+                // 13.- Create a program that will simulate a traffic light.
+                /*- Follow steps below
+                    	Step 1. show a green light for 60 seconds
+                    	Step 2. after 60 seconds, disable the green light and enable the yellow light
+                    	Step 3. after 3 seconds, disable the yellow light, and enable the red light
+                    	Step 4. after 60 seconds,disable the red light,  go back to step 1				*/
+
+                  /*" <div id=""traffic_light"" style=""border: 1px solid grey; padding: 10px; width: 52px;"">
+                    	<div class=""red_light"" style=""height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;""></div>
+                    	<div class=""yellow_light"" style=""height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;""></div>
+                    	<div class=""green_light"" style=""height: 50px; width: 50px; border-radius: 25px; border: 1px solid grey;""></div>
+                      </div>"
+                	*/
+
+                  $(document).ready(function(){
+
+
+
+
+                        // var signal = $("#btn13").click(function(){
+                        //     $(".green_light").css("background-color","green");
+                        //
+                        //     setTimeout(function(){
+                        //       $(".green_light").css("background-color","");
+                        //       $(".yellow_light").css("background-color","yellow");
+                        //     },3000);
+                        //
+                        //     setTimeout(function(){
+                        //       $(".yellow_light").css("background-color","");
+                        //       $(".red_light").css("background-color","red");
+                        //     },6000);
+                        //
+                        //     setTimeout(function(){
+                        //         $(".red_light").css("background-color","");
+                        //         $("#btn13").click();
+                        //     },9000);
+                        // setTimeoutは命令を入れると実行してくれるのでsetInterを使わなくてもループができてしまう
+
+
+                            var timeSeconds = 0;
+                            setInterval(function(){
+                              console.log(timeSeconds);
+                              if (timeSeconds < 60) {
+                                // show green color
+                                $(".green_light").css("background-color","green");
+                              } else if (timeSeconds < 63) {
+                                // show yellow color
+                                $(".green_light").css("background-color","");
+                                $(".yellow_light").css("background-color","yellow");
+                              } else if(timeSeconds < 123) {
+                                // show red color
+                                $(".yellow_light").css("background-color","");
+                                $(".red_light").css("background-color","red");
+                                // console.log(timeSeconds = 0);
+                                // $(".red_light").css("background-color","");
+                              } else  {
+                                console.log(timeSeconds = 0);
+                                $(".red_light").css("background-color","");
+                                $(".green_light").css("background-color","green");
+                              }
+
+                              timeSeconds++;
+                            }, 1000);
+
+                        });
+
+                    // });
 
 
 

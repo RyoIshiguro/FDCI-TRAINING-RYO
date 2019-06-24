@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="jquery-3.4.1.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!-- <div id="myName">TEXT</div>
+    <div id="textName">TEXT</div>
+    <div id="myDiv">myDiv</div>
+    <div id="parentDiv">my first child</div> -->
+    <!-- <button type="button" name="button">add to list</button> -->
+    <!-- <button type="button" name="button">change</button>
+    <div>TEXT</div>
+    <div>TEXT</div>
+    <div>TEXT</div>
+    <div>TEXT</div>
+    <div>TEXT</div>
+    <div>TEXT</div> -->
+
+
+
+    <input type="text" id="myinput" name="" value="">
+
+    <p id="myInputtendText"></p>
+
+    <h1></h1>
+    <button type="button" id="start" name="">click me</button>
+    <button type="button" id="stop" name="">timeout</button>
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+  <script>
+
+    //readyのパターンは最初に画面を読み込む　functionは後から読み込む
+    // $(document).ready(function($){
+    //   $("div").css("background","skyblue");
+    //   $("div").css("color","white");
+    // });
+    //
+    // $(document).ready(function($){
+    //   $("#myName").html("<h1>RYO</h1>");
+    //   $("#myName").html("<h1 style='color:purple';>RYO</h1>"); //styleも入れられる
+    //   $("#textName").text("<h2>RYO</h2>");
+    //
+    //   $("#myDiv").height(); //高さを取得
+    //   // $("#myDiv").height(200); 数値を入力すると本当に高さを変えられる
+    //
+    //   // $("#myDiv").height();
+    //   // $("#myDiv").width();
+    //
+    //   $("#myDiv").height(200);
+    //   $("#myDiv").width(200);
+    //
+    // });
+    //
+    //   $(document).ready(function($){
+    //     $("#parentDiv").append("<p> my second child </p>")
+    //     $("#parentDiv").append("<p> my third child </p>")
+    //     $("#parentDiv").append("<p> my fourth child </p>")
+    //
+    //     $("#parentDiv").prepend("<p> my only child </p>")
+    //
+    //   });
+    //
+    //   //divをクリックすると黄色にできる
+    //   $(document).ready(function(){
+    //     $("button,div").click(function(){
+    //       $(this).css("background","yellow");
+    //     });
+    //   });
+    //
+    //   $(document).ready(function(){
+    //     $("button").click(function(){
+    //       $("p:first-child").css("background","yellow");
+    //       $("p:last-child").css("background","yellow");
+    //       $("p:nth-child(3)").css("background","yellow");
+    //     });
+    //   });
+
+      $(document).ready(function($){
+        $("#myinput").keyup(function(event){
+
+          var theText = $(this).val();  //#myinputでもthisと同じ
+
+          if (theText == "car") {
+            $("#myInputtendText").css("background","orange");
+          } else {
+            $("#myInputtendText").css("background","white");
+          }
+
+          $("#myInputtendText").text(theText);
+
+        });
+
+          $("#start").click(function(event){
+            var theText = $("#myinput").val();
+
+            displayTimeout = setTimeout(function(){
+
+              $("h1").html(theText);
+
+                $("h1").fadeOut(5000);
+
+              setTimeout(function(){
+                $("h1").css("background","purple");
+              },3000);
+
+            },5000);
+        });
+
+        $("#stop").click(function(event){
+          clearTimeout(displayTimeout);
+        });
+
+      });
+
+
+      var displayTimeout;
+        $("button").hover(function(){
+
+          $(this).css("background","red");
+
+        }, function(){
+
+            $(this).css("background","pink");
+
+        });
+
+
+        $("button").click(function(event){
+
+          $(this).attr("class","theClass");
+
+          $(this).attr("anotherClass");
+          $(this).attr("anotherClass2");
+
+          var theID = $(this).attr("style");
+          alert(theID);
+
+
+          });
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+  </script>
+</html>
