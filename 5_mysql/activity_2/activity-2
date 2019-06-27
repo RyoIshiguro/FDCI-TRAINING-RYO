@@ -1,0 +1,13 @@
+SELECT first_name as "First Name", last_name as "Last Name" FROM employees
+
+Select distinct gender from employees
+
+SELECT * from employees ORDER by first_name DESC
+
+SELECT COUNT(*) FROM employees WHERE emp_no
+
+SELECT * FROM employees WHERE birth_date > "1950-01-01" ORDER BY emp_no
+
+SELECT * from employees WHERE birth_date >= '1963-01-01' AND birth_date <= '1963-12-31' and gender = "f"
+
+SELECT * from employees WHERE hire_date >= '1990-01-01'
