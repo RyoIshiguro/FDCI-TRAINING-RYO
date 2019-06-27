@@ -1,0 +1,77 @@
+-- this is for messages table
+
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL COMMENT 'auto',
+  `to_id` int(11) NOT NULL,
+  `from_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto';
+
+
+
+
+
+-- this is for users table
+
+  CREATE TABLE `users` (
+  `id` int(11) NOT NULL COMMENT 'auto',
+  `name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL COMMENT 'unique',
+  `qassword` varchar(255) NOT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `gender` char(1) DEFAULT NULL COMMENT '1=male,2=female,null=not_specified',
+  `birthday` date DEFAULT NULL,
+  `hubby` text,
+  `last_login_time` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `created_ip` varchar(20) NOT NULL COMMENT 'user_jp_address',
+  `modified_ip` varchar(20) NOT NULL COMMENT 'user_jp_address'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto';
