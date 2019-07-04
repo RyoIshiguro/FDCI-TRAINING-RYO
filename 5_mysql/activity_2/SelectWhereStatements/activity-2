@@ -4,7 +4,7 @@ Select distinct gender from employees
 
 SELECT * from employees ORDER by first_name DESC
 
-SELECT COUNT(*) FROM employees WHERE emp_no
+SELECT COUNT(emp_no) FROM employees
 
 SELECT * FROM employees WHERE birth_date > "1950-01-01" ORDER BY emp_no
 

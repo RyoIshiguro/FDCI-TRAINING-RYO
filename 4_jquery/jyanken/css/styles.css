@@ -21,6 +21,22 @@ img {
 
 }
 
+.result{
+  display: block;
+  width:100px;
+  height:100px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 50px;
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+#middle{
+  vertical-align: middle;
+}
+
+
 .retry{
   display: block;
   /* margin-left: 50%;
@@ -28,7 +44,7 @@ img {
   text-align: center;
   width:300px;
   height:300px;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-left:  auto;
   margin-right: auto;
 
