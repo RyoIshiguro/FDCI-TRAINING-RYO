@@ -12,8 +12,7 @@ var arr = ["gu","choki","pa"];
 // ランダム正数
 var num1 = arr[Math.floor(Math.random() * arr.length)];
 var num2 = arr[Math.floor(Math.random() * arr.length)];
-
-
+var flag = false;
 
 
 //com hand function
@@ -37,9 +36,13 @@ var btn1 = document.getElementById("gu");
 btn1.addEventListener("click",function(){
   // console.log("gu");
   // console.log(btn1);
-  var num1 = "gu";
-  
 
+  //ストップ　切り替えフラグ　他のものはクリックさせない
+  var num1 = "gu";
+  if (flag) {
+    return false;
+  }
+  flag = true;
 
   if( num2 == "gu" ){
     console.log("aiko"  + " = you draw ");
@@ -69,6 +72,10 @@ btn2.addEventListener("click",function(){
   // console.log(btn1);
   var num1 = "choki";
 
+  if (flag) {
+    return false;
+  }
+  flag = true;
 
   if( num2 == "gu" ){
     console.log("make" + " = hey loser ");
@@ -99,6 +106,10 @@ btn3.addEventListener("click",function(){
   // console.log(btn1);
   var num1 = "pa";
 
+  if (flag) {
+    return false;
+  }
+  flag = true;
 
   if( num2 == "gu" ){
     console.log("kachi" + " = you win!");
