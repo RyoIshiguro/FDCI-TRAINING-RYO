@@ -44,6 +44,10 @@ btn1.addEventListener("click",function(){
   }
   flag = true;
 
+
+
+
+
   if( num2 == "gu" ){
     console.log("aiko"  + " = you draw ");
     console.log(num2 + " = computer hund");
