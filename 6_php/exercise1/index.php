@@ -8,7 +8,7 @@
 
 <?php
   $a = 2.5;
-  echo 2.5;
+  echo $a;
   echo "<br>\n";
 ?>
 
@@ -35,7 +35,7 @@
 
     echo $str_len1 = strlen($str1);echo "<br>\n";
 
-    echo $str1, " ", $first_name . "<br />\n";
+    echo $str1. " ". $first_name . "<br />\n";
 
    ?>
 
