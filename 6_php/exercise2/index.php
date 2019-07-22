@@ -8,7 +8,7 @@
 
   echo $Ryo[3];  echo "<br>\n";
 
-  $Ryo[3] = "Ryo";
+  $Ryo[3] = "Ryo"
   print_r($Ryo);  echo "<br>\n";
 
 
