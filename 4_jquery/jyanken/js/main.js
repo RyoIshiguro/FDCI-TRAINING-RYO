@@ -14,6 +14,10 @@ var num1 = arr[Math.floor(Math.random() * arr.length)];
 var num2 = arr[Math.floor(Math.random() * arr.length)];
 var flag = false;
 
+var comhandstyle = {
+  color:'red',
+}
+
 
 //com hand function
 // function functionName(hand) {
@@ -44,6 +48,12 @@ btn1.addEventListener("click",function(){
   }
   flag = true;
 
+//自分が選択した手の色を変化
+  // for (var num2 in comhandstyle) {
+  //
+  //     console.log(comhandstyle[num2]);
+  //
+  // }
 
 
 
@@ -57,6 +67,8 @@ btn1.addEventListener("click",function(){
     console.log("kachi" + " = you win!");
     console.log(num2 + " = computer hund");
       display.innerHTML ="you win!" ;
+
+
 
   } else if (num2 == "pa"){
     console.log("make" + " = hey loser ");
