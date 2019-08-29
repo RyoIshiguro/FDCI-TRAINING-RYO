@@ -46,8 +46,9 @@ setInterval(computer.concat(".style.opacity^=1"),500);
 
 function clear(){
   clearInterval();
-  gu.style.opacity=1;
-  comGu.style.opacity=1;
+  return
+  // gu.style.opacity=1;
+  // comGu.style.opacity=1;
   // setTimeout('countSecond()',2000);
 }
 
@@ -65,7 +66,7 @@ btn1.addEventListener("click",function(){
 //ストップ　切り替えフラグ　他のものはクリックさせない
   if (flag && !isDraw) {
     clear(gu,comGu);
-    setTimeout('countSecond()',2000);
+    // setTimeout('countSecond()',1000);
     return false;
 
   }
