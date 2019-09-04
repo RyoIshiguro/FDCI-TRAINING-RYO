@@ -8,25 +8,28 @@
 
 
     <?php
+        // - server information
+        $host = "localhost";
+        $user = "Ryo";
+        $password = "sixdenpis";
+        $dbname = "fdc_exercise";
 
-        $host = 'localhost';
-        $dbname = 'fdc_exercise';
-        $dbuser = 'Ryo';
-        $dbpassword = 'sixdenpis';
+        // - creating connection
+        $conn = mysqli_connect(
+        			$host,
+        			$user,
+        			$password,
+        			$dbname
+        		);
 
-        try{
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;
-            charset=utf8",
-            "$dbuser",
-            "$dbpassword"
-          );
-            header("Location:/connect_db/db_success.php");
-        } catch (PDOException $e) {
-            header("Location:/connect_db/db_fail.php");
-          exit();
+        // - Check connection
+        if ($conn) {
+          include("db_success.php");
+        } else {
+          include("db_fail.php");
         }
+      ?>
 
-    ?>
 
 
   </body>
