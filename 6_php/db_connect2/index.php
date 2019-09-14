@@ -1,16 +1,7 @@
 <?php
 include 'db_connect.php';
 
-// $fname = $_POST["user_first_name"];
-// $lname = $_POST["user_last_name"];
-// $phoneNumber = $_POST["user_phone"];
-// $email = $_POST["user_email"];
-// $address1 = $_POST["user_address_1"];
-// $address2 = $_POST["user_address_2"];
-// $submit = $_POST["submit"];
-$dissplayJudge = "";
-
-
+$error_flg = "default";
 
 
 //registerボタンを押したら
@@ -34,18 +25,22 @@ if (isset($_POST["submit"])) {
       empty($email) ||
       empty($address1) ||
       empty($address2) ){
-      //空があれば  displayJudge("failed");を返す
-      echo "Connection trriger of insert is not working";
-      displayJudge("failed");
+      //空があれば  displayJudge("true");を返す
+      // echo "Connection trriger of insert is not working";echo "<br>\n";
+      // displayJudge(true);
+      $error_flg = true;
   } else{
     registerUserdata($CONNECTION);
-    // echo "Connection trriger of insert";
+    // ↓挿入失敗時に
+    // echo "Connection trriger of insert";echo"<br>\n";
+    // displayJudge(false);
+     $error_flg = false;
   }
 }
 
 
 
-
+//step１クエリを書く
 $sql = "
 select
   id as emp_id,
@@ -53,12 +48,14 @@ select
   last_name as emp_lname,
   email_address as emp_mail,
   phone_number as emp_phone,
-  address1 as emp_address1
+  address1 as emp_address1,
+  address2 as emp_address2
 from
   employees
 order by
 id desc";
 
+//step２ sql関数　mysqli_query(DBとクエリ)　データをここに持ってくる
 $result = mysqli_query($CONNECTION,$sql);
 // var_dump($result);die();
 
@@ -87,9 +84,10 @@ if($result){
 //   $address2
 // )
 
+//update
 //function 登録を押したら、insertのクエリを動かす。
 function registerUserdata($CONNECTION){
-
+  //dbとinputformが繋がっているもの(name)を呼ぶ
   $fname = $_POST["user_first_name"];
   $lname = $_POST["user_last_name"];
   $phoneNumber = $_POST["user_phone"];
@@ -124,11 +122,12 @@ function registerUserdata($CONNECTION){
       if($result){
         // print_r($result);
         // echo "User data insert is success";echo "<br>\n";
-        displayJudge("true");
-
+        // displayJudge("false");
+        $error_flg = false;
+        // echo "User data insert is success";echo"<br>\n";
       } else {
-        echo "User data insert is failed";
-        displayJudge("failed");
+        // echo "User data insert is failed";echo"<br>\n";
+        $error_flg = true;
       }
         // header("Location:index.php");
         // return;
@@ -136,14 +135,72 @@ function registerUserdata($CONNECTION){
 
 
 
+if (isset($_POST["delete"])) {
+  echo "delete";
+   $id = $_POST["user_id"];
 
+  $sqlDelete = "
+    delete
+      from
+    `employees`
+      where
+        `id` = $id
+  ";
 
+  $update_result = mysqli_query($CONNECTION, $sqlDelete);
 
+  return;
 
+}
 
+//step1
+if (isset($_POST["update"])) {
+  echo "update";
+  //step2
+  // - variables
+  $fname = $_POST["user_first_name"];
+  $lname = $_POST["user_last_name"];
+  $phoneNumber = $_POST["user_phone_number"];
+  $email = $_POST["user_email"];
+  $address1 = $_POST["user_address_1"];
+  $address2 = $_POST["user_address_2"];
+  $user_id = $_POST["user_id"];
+  //step3 クエリ
+  // - prepare the statement
+  $sqlUpdate = "
+    UPDATE
+      `employees`
 
+    SET
+      first_name = '$fname',
+      last_name = '$lname'
+
+    WHERE
+        `id` = $user_id
+  ";
+
+  //step4　sql 関数で実行
+  // - run the query
+  $update_result = mysqli_query($CONNECTION, $sqlUpdate);
+
+  // - check if the update query worked
+  // if ($update_result == false) {
+  //   var_dump(mysqli_error($CONNECTION));
+  // }
+
+  //step5　結果を返す
+  // - return
+  return;
+
+}
+// var_dumpはデバグしたい時に使う
+// var_dump();
+// die();
+//
+// var_dump($error_flg);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -169,30 +226,31 @@ function registerUserdata($CONNECTION){
 		<!-- header section -->
 		<header class="row">
 			<div class="col-sm-12">
-
-
       <!-- insert成功なら（true）なら表示 -->
       <?php
-      function displayJudge($dissplayJudge){
+      // var_dump($error_flg !== "default");
+      // var_dump($error_flg != "default");
 
-        //真偽値の変数　真
-        if($dissplayJudge == "true"){
+
+
+        // var_dump($error_flg);
+        // var_dump(strlen($error_flg));
+        // var_dump($error_flg == false);
+
+        //真偽値の変数　 真
+        if($error_flg !== "default" && $error_flg == false){
        ?>
-
 				<!-- success message -->
 				<div class="alert alert-success" role="alert">
 					An employee was registered!
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+						<span aria-hidden="failse">&times;</span>
 					</button>
 				</div>
-
       <?php
       //<!-- insert失敗なら（failed）なら表示 -->
-    } else if($dissplayJudge == "failed") {
+    } else if($error_flg !== "default" && $error_flg == true) {
       ?>
-
-
 				<!-- error message -->
 				<div class="alert alert-danger" role="alert">
 					Unable to save employee!
@@ -200,12 +258,9 @@ function registerUserdata($CONNECTION){
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
       <?php
         }
-      }
       ?>
-
 				<!-- registration form -->
 				<div class="card">
 					<div class="card-header">
@@ -284,8 +339,25 @@ function registerUserdata($CONNECTION){
 
                   <td style="width: 150px;">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-warning">UPDATE</button>
-                      <button type="button" class="btn btn-danger">DELETE</button>
+
+                      <form class="" action="" method="post">
+                          <input type="text" name="user_first_name" value="<?php  print_r($row["emp_name"]);?>">
+                          <input type="text" name="user_last_name" value="<?php  print_r($row["emp_lname"]);?>">
+                          <input type="text" name="user_email" value="<?php  print_r($row["emp_mail"]);?>">
+                          <input type="text" name="user_phone_number" value="<?php  print_r($row["emp_phone"]);?>">
+                          <input type="text" name="user_address_1" value="<?php  print_r($row["emp_address1"]);?>">
+                          <input type="text" name="user_address_2" value="<?php  print_r($row["emp_address2"]);?>">
+                          <input type="text" name="user_id" value="<?php echo $row["emp_id"] ?>">
+                        <input type="submit" name="update" class="btn btn-warning" value="update">
+                      </form>
+
+                      <form class="" action="" method="post">
+                        <input type="text" name="user_id" value="<?php echo $row["emp_id"] ?>">
+                        <input type="submit" name="delete" class="btn btn-danger" value="DELETE">
+                      </form>
+
+
+
                     </div>
                   </td>
 
