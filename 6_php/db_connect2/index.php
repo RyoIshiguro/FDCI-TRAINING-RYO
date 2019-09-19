@@ -1,9 +1,6 @@
 <?php
 include 'db_connect.php';
-
 $error_flg = "default";
-
-
 //registerボタンを押したら
 if (isset($_POST["submit"])) {
   //
@@ -15,9 +12,6 @@ if (isset($_POST["submit"])) {
   $address1 = $_POST["user_address_1"];
   $address2 = $_POST["user_address_2"];
   // $submit = $_POST["submit"];
-
-
-
   //値が入っているか確認する　値が入っていたらinsertを起動する &&で反応しない理由は何？
   if (empty($fname) || //!isset($fname)とするとすでに値が存在していることになる。ので間違っていることになる
       empty($lname) || //!empty($fname)とすると中身が空だったらになる
@@ -37,9 +31,6 @@ if (isset($_POST["submit"])) {
      $error_flg = false;
   }
 }
-
-
-
 //step１クエリを書く
 $sql = "
 select
@@ -54,12 +45,9 @@ from
   employees
 order by
 id desc";
-
 //step２ sql関数　mysqli_query(DBとクエリ)　データをここに持ってくる
 $result = mysqli_query($CONNECTION,$sql);
 // var_dump($result);die();
-
-
 if($result){
   // echo "the query returned => ".mysqli_num_rows($result);
   // echo "<ht>";
@@ -67,14 +55,11 @@ if($result){
   echo "we encountered an error ->".mysqli_error($CONNECTION);
   echo "<ht>";
 }
-
 // while($row = mysqli_fetch_assoc($result)){
 //   var_dump($row["emp_name"]);echo"<br>";
 //   var_dump($row["emp_id"]);echo"<br>";
 // }
 // die();
-
-
 // print_r(
 //   $fname,
 //   $lname,
@@ -83,7 +68,6 @@ if($result){
 //   $address1,
 //   $address2
 // )
-
 //update
 //function 登録を押したら、insertのクエリを動かす。
 function registerUserdata($CONNECTION){
@@ -95,7 +79,6 @@ function registerUserdata($CONNECTION){
   $address1 = $_POST["user_address_1"];
   $address2 = $_POST["user_address_2"];
   $submit = $_POST["submit"];
-
   //値が入っていたら
     $sqlInsertData = "
     	INSERT INTO
@@ -116,9 +99,7 @@ function registerUserdata($CONNECTION){
   			'$address1',
   			'$address2'
   			 )";
-
       $result = mysqli_query($CONNECTION,$sqlInsertData);
-
       if($result){
         // print_r($result);
         // echo "User data insert is success";echo "<br>\n";
@@ -132,13 +113,9 @@ function registerUserdata($CONNECTION){
         // header("Location:index.php");
         // return;
 }
-
-
-
 if (isset($_POST["delete"])) {
   echo "delete";
    $id = $_POST["user_id"];
-
   $sqlDelete = "
     delete
       from
@@ -146,13 +123,9 @@ if (isset($_POST["delete"])) {
       where
         `id` = $id
   ";
-
   $update_result = mysqli_query($CONNECTION, $sqlDelete);
-
   return;
-
 }
-
 //step1
 if (isset($_POST["update"])) {
   echo "update";
@@ -170,34 +143,87 @@ if (isset($_POST["update"])) {
   $sqlUpdate = "
     UPDATE
       `employees`
-
     SET
       first_name = '$fname',
       last_name = '$lname'
-
     WHERE
         `id` = $user_id
   ";
-
   //step4　sql 関数で実行
   // - run the query
   $update_result = mysqli_query($CONNECTION, $sqlUpdate);
-
   // - check if the update query worked
   // if ($update_result == false) {
   //   var_dump(mysqli_error($CONNECTION));
   // }
-
   //step5　結果を返す
   // - return
   return;
-
 }
 // var_dumpはデバグしたい時に使う
-// var_dump();
+// var_dump();//カッコ内の
 // die();
 //
 // var_dump($error_flg);
+
+$search_term = "";
+
+
+//isset関数は、変数に値がセットされていて、かつNULLでないときに、TRUE(真)を戻り値として返します。
+//NULLとは、変数が値を持っていないことをあらわす特別な値です。
+if (isset($_GET["user_search_term"]) && !empty($_GET["user_search_term"])){
+  $search_term = $_GET["user_search_term"];
+// }
+// var_dump();
+// die();
+
+
+//mysqli_fetch_assoc mysql_query関数でSELECT文などから取得したリソースデータを、レコード毎に連想配列にして返す
+//それで下のwhile文にある＜td＞<?php  print_r($row["emp_id"]);？＞</td>でニックネームを使っているので
+//select * from "employees" where first_name like "%first_name%"だけではエラーが表示される
+//同じデータの形で渡す必要があるので↓のようにselect id as emp_id from でニックネームで渡すこと。
+
+$sqlSearch = "
+	select
+          id as emp_id,
+          first_name as emp_name,
+          last_name as emp_lname,
+          email_address as emp_mail,
+          phone_number as emp_phone,
+          address1 as emp_address1,
+          address2 as emp_address2
+  from
+          `employees`
+  WHERE
+          first_name
+  LIKE
+          '%$search_term%'
+  OR
+          last_name
+  LIKE
+          '%$search_term%'
+  OR
+          phone_number
+  LIKE
+          '%$search_term%'
+  OR
+          email_address
+  LIKE
+          '%$search_term%'
+  OR
+          address1
+  LIKE
+        '%$search_term%'
+	";
+
+  $result = mysqli_query($CONNECTION, $sqlSearch);
+  // var_dump($result); echo"<br>\n";
+  // die();
+}
+  // return;
+
+
+
 
 ?>
 
@@ -230,13 +256,9 @@ if (isset($_POST["update"])) {
       <?php
       // var_dump($error_flg !== "default");
       // var_dump($error_flg != "default");
-
-
-
         // var_dump($error_flg);
         // var_dump(strlen($error_flg));
         // var_dump($error_flg == false);
-
         //真偽値の変数　 真
         if($error_flg !== "default" && $error_flg == false){
        ?>
@@ -306,6 +328,20 @@ if (isset($_POST["update"])) {
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
+
+            <!-- ACTIVITY 4 - SEARCH -->
+              <div class="clearfix">
+                  <form class="form-inline">
+                      <div class="input-group mb-3 col-12" style="padding-left: 0px; padding-right: 0px;">
+                          <input type="text" class="form-control" placeholder="Type something" aria-describedby="basic-addon2" name="user_search_term" value="<?php echo $search_term ?>">
+                          <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="submit">SEARCH</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            <!-- ACTIVITY 4 - SEARCH -->
+
 						<table class="table table-bordered">
 							<thead class="thead-dark">
 								<tr>
@@ -325,6 +361,8 @@ if (isset($_POST["update"])) {
                   //mysqli_fetch_assoc mysql_query関数でSELECT文などから取得したリソースデータを、レコード毎に連想配列にして返す
                   //こいつを例にすると$result = mysqli_query($CONNECTION,$sql); $CONNECTIONでDBと接続した状態にして$sqlこれを取ってきていることが条件
                     while($row = mysqli_fetch_assoc($result)){
+                      // var_dump($result); echo"<br>\n";v
+                      // die();
                    ?>
                    <tr>
 
@@ -364,7 +402,10 @@ if (isset($_POST["update"])) {
 
 
                   </tr>
-                <?php } ?>
+                <?php
+                // var_dump($result); echo"<br>\n";
+                // die();
+              } ?>
 								</tr>
 							</tbody>
 						</table>
@@ -374,4 +415,3 @@ if (isset($_POST["update"])) {
 		</div>
 	</div>
 </body>
-</html>
