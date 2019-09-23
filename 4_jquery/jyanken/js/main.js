@@ -34,31 +34,33 @@ var flag = false;
 // flag judge draw
 var isDraw = false;
 
-
+//秒数計算と点滅機能
 function countup(player,computer){
+  //カウント初期値を０に設定
   var countup = 0;
+  //透明度の初期値を1に設定(透明は０)
   var currentOpacity = 1;
+
+  //
   var timer = setInterval(function(){
 
+    //カウントに１を足す
     countup = countup + 1;
     console.log(countup);
 
     setAnimation(player, computer);
-
-    // .style.opacity = 1;
-
-
-
+    //もしオパシティの値が０か１か判定する
     if(currentOpacity == 0){
       currentOpacity = 1;
     }else{
       currentOpacity = 0;
     }
-
+    //ここで上のIF文で処理されたオパシティの値を入れる
     document.getElementById(player).style.opacity = currentOpacity;
     document.getElementById(computer).style.opacity = currentOpacity;
 
-
+    //カウントが10を超えたtimerをクリアしてオパシティの値を１に設定する
+    //点滅は0.5秒ごと(500)
     if( 10 <= countup){
        clearInterval(timer);
        document.getElementById(player).style.opacity = 1;
@@ -74,28 +76,7 @@ function setAnimation(player, computer) {
 // var currentOpacity = "".style.opacity = "1";
 
 }
-//   if(currentOpacity == "1"){
-//     currentOpacity = "0";
-//   } else {
-//     currentOpacity == "1"
-//   }
-// };
 
-// setInterval(player.concat(".style.opacity^=1"),500);
-// setInterval(computer.concat(".style.opacity^=1"),500);
-// clearInterval(player, computer);
-// }
-
-// function clear(){
-//
-//   setInterval(player.concat(".style.opacity^=1"),0);
-//   setInterval(computer.concat(".style.opacity^=1"),0);
-//   clearInterval();
-//   return
-//   // gu.style.opacity=1;
-//   // comGu.style.opacity=1;
-//   // setTimeout('countSecond()',2000);
-// }
 
 
 
@@ -129,7 +110,7 @@ btn1.addEventListener("click",function(){
     // setInterval("gu.style.opacity^=0",500);
     // setInterval("comGu.style.opacity^=1",500);
     // setInterval("gu.style.opacity^=1",500);
-    setAnimation(num1, num2);
+    // setAnimation(num1, num2);
     countup(num1,num2);
     num2 = arr2[Math.floor(Math.random() * arr.length)];
 
@@ -144,7 +125,7 @@ btn1.addEventListener("click",function(){
       // setInterval("choki.style.opacity^=0",500);
       // setInterval("gu.style.opacity^=1",500);
       // setInterval("comChoki.style.opacity^=1",500);
-      setAnimation("gu", "comChoki");
+      // setAnimation("gu", "comChoki");
       countup(num1,num2);
 
   } else if (num2 == "comPa"){
@@ -155,7 +136,7 @@ btn1.addEventListener("click",function(){
       // setInterval("pa.style.opacity^=0",500);
       // setInterval("gu.style.opacity^=1",500);
       // setInterval("comPa.style.opacity^=1",500);
-      setAnimation("gu", "comPa");
+      // setAnimation("gu", "comPa");
       countup(num1,num2);
 
   } else {
@@ -186,7 +167,7 @@ btn2.addEventListener("click",function(){
     isDraw = false;
     // setInterval("choki.style.opacity^=1",500);
     // setInterval("comGu.style.opacity^=1",500);
-    setAnimation("choki", "comGu");
+    // setAnimation("choki", "comGu");
     countup(num1,num2);
 
   } else if (num2 == "comChoki" ){
@@ -196,7 +177,7 @@ btn2.addEventListener("click",function(){
     isDraw = true;
     // setInterval("choki.style.opacity^=1",500);
     // setInterval("comChoki.style.opacity^=1",500);
-    setAnimation("choki", "comChoki");
+    // setAnimation("choki", "comChoki");
     countup(num1,num2);
     num2 = arr2[Math.floor(Math.random() * arr.length)];
 
@@ -208,7 +189,7 @@ btn2.addEventListener("click",function(){
     isDraw = false;
     // setInterval("choki.style.opacity^=1",500);
     // setInterval("comPa.style.opacity^=1",500);
-    setAnimation("choki", "comPa");
+    // setAnimation("choki", "comPa");
     countup(num1,num2);
 
   } else {
@@ -241,7 +222,7 @@ btn3.addEventListener("click",function(){
     isDraw = false;
     // setInterval("pa.style.opacity^=1",500);
     // setInterval("comGu.style.opacity^=1",500);
-    setAnimation("pa", "comGu");
+    // setAnimation("pa", "comGu");
     countup(num1,num2);
 
   } else if (num2 == "comChoki" ){
@@ -251,7 +232,7 @@ btn3.addEventListener("click",function(){
     isDraw = false;
     // setInterval("pa.style.opacity^=1",500);
     // setInterval("comChoki.style.opacity^=1",500);
-    setAnimation("pa", "comChoki");
+    // setAnimation("pa", "comChoki");
     countup(num1,num2);
 
   } else if (num2 == "comPa"){
@@ -261,7 +242,7 @@ btn3.addEventListener("click",function(){
     isDraw = true;
     // setInterval("pa.style.opacity^=1",500);
     // setInterval("comPa.style.opacity^=1",500);
-    setAnimation("pa", "comPa");
+    // setAnimation("pa", "comPa");
     countup(num1,num2);
     num2 = arr2[Math.floor(Math.random() * arr.length)];
 
