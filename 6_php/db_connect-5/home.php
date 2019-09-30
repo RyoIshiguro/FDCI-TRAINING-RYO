@@ -1,5 +1,13 @@
 <?php
-  // include 'db_connect_php';
+  // include 'db_connect';
+  if(!isset($_SESSION["email"])){
+
+  } else {
+    header("Location:home.php");
+  }
+  // ini_set('session.cookie_secure', 1);
+  session_start();
+  echo "Hellow world".$_SESSION["email"];
  ?>
 <!doctype html>
 <html lang="ja">

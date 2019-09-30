@@ -2,6 +2,7 @@
 
   include 'db_connect.php';
 
+  //値を入れる入れ物、最初に中身は仮置きする
   $error_flg = "default";
 
   if (isset($_POST["register"])) {

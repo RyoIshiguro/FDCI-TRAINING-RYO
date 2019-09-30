@@ -1,7 +1,8 @@
 <?php
 
   include 'db_connect.php';
-  // session_start();
+
+
 
   $error_flg = "default";
 
@@ -9,33 +10,46 @@
 
   //login 押した時の動作
   if (isset($_POST["log_in"])){
-    $email = $_POST["email"];
-    $password = $_POST["password"];
 
-    //sql email　と　パスワード
-    
-      $SelectEmailPsw  = "
-                          SELECT
-                                  *
-                          FROM
-                                  `users2`
-                          WHERE
-                                  'email' = ' $email'
-                          AND
-                                  'password' = '$password'
-                          ";
+    if(empty($_POST["email"]) || empty($_POST["password"])){
+        $error_flg = true;
 
-    $qry = mysqli_query($CONNECTION,$SelectEmailPsw);
+      } else {
+        // $emailStr = $_POST['email'];
+        // $passwordStr = $_POST['password'];
+        // $EmailPsw = "select *  from `users2` where `email` LIKE '$emailStr' and `password` LIKE '$passwordStr'";
+        $EmailPsw  = "
+                            SELECT
+                                    *
+                            FROM
+                                    `users2`
+                            WHERE
+                                    `email` LIKE '".$_POST['email']."'
+                            AND
+                                    `password` LIKE '".$_POST['password']."'
+                            ";
+        // printf($EmailPsw);
+        $qry = mysqli_query($CONNECTION,$EmailPsw);
 
-    if($qry){
-      header("Location:home.php");
-      // var_dump($_POST["email"]);
-      // var_dump($_POST["password"]);
-    } else {
-      echo "login Error";
-      $error_flg = true;
+        if(mysqli_fetch_assoc($qry)){
+          $_SESSION["email"] = $_POST["email"];
+          header("Location:home.php");
+        } else {
+          $error_flg = true;
+          mysqli_error($CONNECTION);
+          // var_dump($_POST['email']);
+          // var_dump($_POST['password']);
+
+          while ($row = mysqli_fetch_assoc($qry)) {
+            var_dump($row["email"]);"<br>\n";
+            var_dump($row["passwprd"]);"<br>\n";
+          }
+
+        }
+
+      }
     }
-  }
+
 
 ?>
 <!doctype html>
