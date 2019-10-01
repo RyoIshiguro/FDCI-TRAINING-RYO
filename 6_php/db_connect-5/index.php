@@ -2,15 +2,22 @@
 
   include 'db_connect.php';
 
+  <?php
 
+  include 'db_connect.php';
+  //セッションにemailが入っていたらhome.phpへ
+  if(isset($_SESSION["email"])){
+    header("Location:home.php");
+  }
 
+  //空の値を入れる
   $error_flg = "default";
 
   // echo "hello world";"<br>\n";"<br>\n";
 
   //login 押した時の動作
   if (isset($_POST["log_in"])){
-
+    //変数の中身がからならtrueを返す
     if(empty($_POST["email"]) || empty($_POST["password"])){
         $error_flg = true;
 
@@ -28,9 +35,12 @@
                             AND
                                     `password` LIKE '".$_POST['password']."'
                             ";
+        //中身を出してデバグ
         // printf($EmailPsw);
         $qry = mysqli_query($CONNECTION,$EmailPsw);
 
+        //qryに対してデータを行にして返すmysqli_fetch_assocを実行
+        //関数を実行した時に、ポストで入力したemail＝セッションにして、home.phpに飛ばす。
         if(mysqli_fetch_assoc($qry)){
           $_SESSION["email"] = $_POST["email"];
           header("Location:home.php");

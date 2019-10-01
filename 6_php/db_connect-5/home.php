@@ -1,13 +1,19 @@
 <?php
-  // include 'db_connect';
-  if(!isset($_SESSION["email"])){
+  include 'db_connect.php';
 
+  if(!isset($_SESSION["email"])){
+    header("Location:login.php");
   } else {
-    header("Location:home.php");
+    // header("Location:home.php");
   }
-  // ini_set('session.cookie_secure', 1);
-  session_start();
-  echo "Hellow world".$_SESSION["email"];
+
+  if (isset($_GET["dologout"])) {
+    unset($_SESSION["email"]);
+    header("Location: login.php");
+  }
+
+  // session_start();
+  // echo "Hellow world".$_SESSION["email"];
  ?>
 <!doctype html>
 <html lang="ja">
@@ -28,17 +34,21 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
   </head>
+<form class="" action="index.html" method="post">
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control form-control-dark w-100" type="text" name="sign_put" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="login.php">Sign out</a>
+          <a class="nav-link" href="home.php?dologout=1">Sign out</a>
+          <?php //?dologout=1 ？がgetでその後ろが名前 意味はhome.phpをログアウトする　パラメータ１を与える?>
         </li>
       </ul>
     </nav>
+
+  </form>
 
     <div class="container-fluid">
       <div class="row">
