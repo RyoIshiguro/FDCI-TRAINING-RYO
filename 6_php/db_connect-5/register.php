@@ -46,7 +46,7 @@
     order by
     id desc
     ";
-    // $sqlSelect = mysqli_query($CONNECTION,$sql);
+    $sqlSelect = mysqli_query($CONNECTION,$sql);
 
     if($sqlSelect){
         // echo "the query returned => ".mysqli_num_rows($result);
@@ -180,7 +180,7 @@ function registerUserdata($CONNECTION){
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Register</button>
 
 
-          
+
 
 
         </form>
