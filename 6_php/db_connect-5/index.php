@@ -1,10 +1,6 @@
 <?php
 
   include 'db_connect.php';
-
-  <?php
-
-  include 'db_connect.php';
   //セッションにemailが入っていたらhome.phpへ
   if(isset($_SESSION["email"])){
     header("Location:home.php");
