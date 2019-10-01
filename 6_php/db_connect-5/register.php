@@ -46,7 +46,7 @@
     order by
     id desc
     ";
-    $sqlSelect = mysqli_query($CONNECTION,$sql);
+    // $sqlSelect = mysqli_query($CONNECTION,$sql);
 
     if($sqlSelect){
         // echo "the query returned => ".mysqli_num_rows($result);
@@ -180,27 +180,7 @@ function registerUserdata($CONNECTION){
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Register</button>
 
 
-            <?php
-              // while ($row = mysqli_fetch_assoc($sqlSelect)){
-             ?>
-
-
-              <td style="width: 150px;">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-
-                      <form class="" action="" method="post">
-                          <input type="text" name="user_first_name" value="<?php  print_r($row["user_id"]);?>">
-                          <input type="text" name="user_last_name" value="<?php  print_r($row["user_first_name"]);?>">
-                          <input type="text" name="user_email" value="<?php  print_r($row["user_last_name"]);?>">
-                          <input type="text" name="user_phone_number" value="<?php  print_r($row["user_email"]);?>">
-                          <input type="text" name="user_address_1" value="<?php  print_r($row["user_password"]);?>">
-                      </form>
-                    </div>
-                  </td>
-
-            <?php
-              // }
-             ?>
+          
 
 
         </form>
