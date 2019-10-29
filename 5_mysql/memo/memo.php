@@ -12,6 +12,9 @@
 
   //insert into `table_name` ('','') values ('','');
 
+//int > varcher >text 処理の速さ
+
+
   $sql = "INSERT INTO `actor`(`first_name`, `last_name`, `last_update`) VALUES ('RYO','ISHIGURO',cast( now() as date))";
   $sql = "INSERT INTO `actor`(`first_name`, `last_name`, `last_update`) VALUES ('RYO','ISHIGURO',cast( now() as datetime))";
 
@@ -136,6 +139,127 @@ $sqlSelect ="select actor_id from `actor` order by actor_id desc";
 //first_nameを昇順で並べる、値が同じもの（同性同名とか）があれば次の条件を指定して並び替えの順番を指定する
 //first_nameを昇順で並べる　同じ値だった場合は　actor_idを降順で表示する
 $sqlSelect ="select * from `actor` order by first_name asc,actor_id desc";
+
+
+//計算と関数
+//商品名と単価という列があったとして、その二つを選択した。単価＊２としたので単価列のものは２倍で出力される
+$sqlSelect ="slect sname , tanka*2 from `shouhin`";
+
+//別AS
+//as で　別名に変更が可能 tanka が　nibaiになって出力される
+$sqlSelect ="select sname,tanka*2 as nibai from `shouhin`";
+
+//関数
+//四捨五入 round
+$sqlSelect ="select round(tanka*0.03) from `shouhin`";
+
+//floor(値)　値を小数点以下切り捨て
+$sqlSelect ="select floor(tanka*0.03) from `shouhin`";
+
+//ceil(値)　値を小数点以下切り上げ
+$sqlSelect ="select ciel;(tanka*0.03) from `shouhin`";
+
+
+//文字列関数
+//文字列に使える関数　SUBSTR
+//first_nameの最初の２文字を取得
+$sqlSelect ="select substr(first_name,1,2) from `actor`";
+
+
+//文字列の長さを取得　LENGTH
+$sqlSelect ="select length(first_name) from `actor`";
+
+
+//現在の日時　curdate()
+//現在の日時　curtime()
+//現在の日時　now()
+//年を取り出す　year(値)
+//月を取り出す　month(値)
+//日を取り出す　day(値)
+
+//今日の日付を出す
+$sqlSelect ="select curdate()";
+
+
+//売上テーブルがあったとして今日リンゴが2個売れた場合以下のような行を追加する
+$sqlSelect ="insert into uriage(sid,kosu,hi) values(1,2,date('now','localtime'))";
+
+
+//売上テーブルの日の年のみを表示
+$sqlSelect ="select year(値) from `uriage`";
+
+
+//集計関数
+//合計　SUM
+//最大値　MAX
+//最小値　MIN
+//平均値　AVG
+//個数　COUNT
+
+//tankaの合計を表示
+$sqlSelect ="select sum(tanka) from `shouhin`";
+
+//　＊を指定する場合と列名を指定する場合の違い　列名を指定するとNULLが含まれない
+
+//また　distinctを列名の前につけると調伏したものを数えなくなる
+$sqlSelect ="select count(distinct first_name) from `actor`";
+
+
+
+//グループ化 group by
+//データによって分けて合計したい場合に使う
+$sqlSelect ="select sum(列名) from テーブル名 group by グループ分けする列名";
+//❇︎group by はwhereの後、order by の前に記述します。
+
+
+$sqlSelect ="select hi , sum(kosu) from uriage group by hi";
+
+//集計結果に条件付け　having
+//計算後の合計値に対して５以上のものを表示したい　条件を満たすものだけを抜き出すのがhaving
+$sqlSelect ="select hi , sum(kosu) from uriage group by hi having sum(kosu) >= 5";
+
+//havingとwhereの違い
+//whereは集計前に行を絞り込む
+//havingは集計後に行を絞り込む
+
+
+//テーブルの結合
+//クロス結合　単純に二つのテーブルの全ての行を組み合わせる。　見にくくてほぼ意味がない
+$sqlSelect ="select actor_id from `actor`,`address`";
+$sqlSelect ="select * from `actor`,`address`";
+
+
+//where結合
+//必要なもののみに絞り込む
+$sqlSelect ="select * from `actor`,`address` where actor.actor_id = address.address_id";
+
+//同じid同士を結合して絞る。そしてand address_id = 1　でid１を指定した形
+$sqlSelect ="select * from `actor`,`address` where actor.actor_id = address.address_id and address_id = 1";
+
+
+//join結合
+$sqlSelect =""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  ?>
